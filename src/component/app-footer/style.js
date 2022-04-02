@@ -23,7 +23,7 @@ export const FooterLeft = styled.div`
     }
 
     .line {
-      margin: 0 5px;
+      margin: 0 15px;
       color: #999;
     }
   }
