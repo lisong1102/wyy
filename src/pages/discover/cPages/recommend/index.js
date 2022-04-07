@@ -1,25 +1,39 @@
-import React, { memo, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { getTopBannerAction } from './store/actionCreator'
-
+import React, { memo } from 'react'
+import HYTopBanner from './c-pns/top-banner'
+import { 
+    RecommendWrapper
+  } from './style'; 
+// --------------------------redux-hooks操作
 function HYRecommend(props) {
-    const { topBanners } = props
-    useEffect(() => {
-        console.log(topBanners, 'sssssssssss')
-    }, [topBanners])
+    //useSelector接受一个参数为函数，函数的返回值，就是useSelector的返回值
+    //shallowEqual用于浅层比较，是否数据发生改变，如果不加，redux-hooks默认会刷新造成性能损耗(不加是深层比较===，useSelector返回一个全新的对象，所以默认会改变)
+    // const { topBanners } = useSelector((state) => ({
+    //     // topBanners: state.recommend.topBanners
+    //     // topBanners: state.get('recommend').get('topBanners') //获取通过immutable处理过后map集合
+    //     topBanners: state.getIn(['recommend', 'topBanners']) //链式获取
+    // }), shallowEqual)
+    // const dispatch = useDispatch()
+    // useEffect(() => {
+    //     dispatch(getTopBannerAction())
+    // }, [dispatch])
     return (
-        <div>recommend</div>
+        <RecommendWrapper>
+            <HYTopBanner></HYTopBanner>
+        </RecommendWrapper> 
     )
 }
-const mapStateToProps = (state) => ({
-    topBanners: state.recommend.topBanners
-})
+export default memo(HYRecommend)
+
+//-----------------------------------connect方法
+// const mapStateToProps = (state) => ({
+//     topBanners: state.recommend.topBanners
+// })
 
 
-const mapDispatchToProps = (dispatch) => ({
-    getBanners: () => {
-        dispatch(getTopBannerAction())
-    }
-})
+// const mapDispatchToProps = (dispatch) => ({
+//     getBanners: () => {
+//         dispatch(getTopBannerAction())
+//     }
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(memo(HYRecommend))
+// export default connect(mapStateToProps, mapDispatchToProps)(memo(HYRecommend))
