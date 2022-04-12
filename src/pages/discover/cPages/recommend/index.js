@@ -1,8 +1,14 @@
 import React, { memo } from 'react'
 import HYTopBanner from './c-pns/top-banner'
-import { 
-    RecommendWrapper
-  } from './style'; 
+import {
+    RecommendWrapper,
+    Content,
+    RecommendLeft,
+    RecommendRight
+} from './style';
+import HotRcommend from './c-pns/hot-recommend';
+import HotNewAlbum from './c-pns/new-album';
+import HotRecommendRanking from './c-pns/recommend-ranking';
 // --------------------------redux-hooks操作
 function HYRecommend(props) {
     //useSelector接受一个参数为函数，函数的返回值，就是useSelector的返回值
@@ -19,7 +25,15 @@ function HYRecommend(props) {
     return (
         <RecommendWrapper>
             <HYTopBanner></HYTopBanner>
-        </RecommendWrapper> 
+            <Content className='wrap-v2'>
+                <RecommendLeft>
+                    <HotRcommend></HotRcommend>
+                    <HotNewAlbum></HotNewAlbum>
+                    <HotRecommendRanking></HotRecommendRanking>
+                </RecommendLeft>
+                <RecommendRight></RecommendRight>
+            </Content>
+        </RecommendWrapper>
     )
 }
 export default memo(HYRecommend)
